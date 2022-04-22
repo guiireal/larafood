@@ -16,4 +16,13 @@ class Plan extends Model
     {
         return 'R$ ' . number_format($value, 2, ',', '.');
     }
+
+    public function search($filter = null)
+    {
+        $results = $this->where('name', 'LIKE', "%{$filter}%")
+            ->orWhere('description', 'LIKE', "%{$filter}%")
+            ->paginate();
+
+        return $results;
+    }
 }
