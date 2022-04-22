@@ -11,4 +11,9 @@ class Plan extends Model
         'price',
         'description',
     ];
+
+    public function getPriceAttribute($value)
+    {
+        return 'R$ ' . number_format($value, 2, ',', '.');
+    }
 }
