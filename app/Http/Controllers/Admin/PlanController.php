@@ -70,4 +70,32 @@ class PlanController extends Controller
 
         return view('admin.pages.plans.index', ['plans' => $plans, 'filters' => $filters]);
     }
+
+    public function edit($url)
+    {
+        $plan = $this->repository->where('url', $url)->first();
+
+        if (!$plan) {
+            return redirect()->back();
+        }
+
+        return view('admin.pages.plans.edit', ['plan' => $plan]);
+    }
+
+    public function update(Request $request, $url)
+    {
+        $plan = $this->repository->where('url', $url)->first();
+
+        if (!$plan) {
+            return redirect()->back();
+        }
+
+        $data = $request->all();
+
+        $data['url'] = Str::kebab($request->name);
+
+        $plan->update($data);
+
+        return redirect()->route('plans.index');
+    }
 }
