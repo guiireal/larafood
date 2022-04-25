@@ -31,7 +31,8 @@ class PlanController extends Controller
     {
         $this->repository->create($request->all());
 
-        return redirect()->route('plans.index');
+        return redirect()->route('plans.index')->with('message', 'Registro inserido com sucesso!');
+        ;
     }
 
     public function show($url)
@@ -55,7 +56,8 @@ class PlanController extends Controller
 
         $plan->delete();
 
-        return redirect()->route('plans.index');
+        return redirect()->route('plans.index')->with('message', 'Registro excluído com sucesso!');
+        ;
     }
 
     public function search(Request $request)
@@ -88,6 +90,7 @@ class PlanController extends Controller
 
         $plan->update($request->all());
 
-        return redirect()->route('plans.index');
+        return redirect()->route('plans.index')->with('message', 'Registro atualizado com sucesso!');
+        ;
     }
 }

@@ -19,10 +19,14 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
         /**
          * Routes Plan Details
          */
-        Route::prefix('{planUrl}/details')->group(function () {
-            Route::get('/create', 'PlanDetailController@create')->name('details.create');
-            Route::get('/', 'PlanDetailController@index')->name('details.index');
-            Route::post('/', 'PlanDetailController@store')->name('details.store');
+        Route::prefix('{planUrl}/details')->name('details.')->group(function () {
+            Route::get('/create', 'PlanDetailController@create')->name('create');
+            Route::get('/{planDetailId}/edit', 'PlanDetailController@edit')->name('edit');
+            Route::get('/', 'PlanDetailController@index')->name('index');
+            Route::post('/', 'PlanDetailController@store')->name('store');
+            Route::get('/{planDetailId}', 'PlanDetailController@show')->name('show');
+            Route::put('/{planDetailId}', 'PlanDetailController@update')->name('update');
+            Route::delete('/{planDetailId}', 'PlanDetailController@destroy')->name('destroy');
         });
     });
 

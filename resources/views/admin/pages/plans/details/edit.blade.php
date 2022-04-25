@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', "Adicionar novo detalhe ao plano {$plan->name}")
+@section('title', "Editar o detalhe {$planDetail->name}")
 
 @section('content_header')
     <ol class="breadcrumb">
@@ -8,16 +8,17 @@
         <li class="breadcrumb-item"><a href="{{ route('plans.index') }}">Planos</a></li>
         <li class="breadcrumb-item"><a href="{{ route('plans.show', [$plan->url]) }}">{{ $plan->name }}</a></li>
         <li class="breadcrumb-item"><a href="{{ route('plans.details.index', [$plan->url]) }}">Detalhes</a></li>
-        <li class="breadcrumb-item active"><a href="{{ route('plans.details.create', [$plan->url]) }}">Novo</a></li>
+        <li class="breadcrumb-item active"><a href="{{ route('plans.details.edit', [$plan->url, $planDetail->id]) }}">Editar</a></li>
     </ol>
 
-    <h1>Adicionar novo detalhe ao plano {{ $plan->name }} </h1>
+    <h1>Editar o detalhe {{ $planDetail->name }} </h1>
 @stop
 
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('plans.details.store', [$plan->url]) }}" method="POST">
+            <form action="{{ route('plans.details.update', [$plan->url, $planDetail->id]) }}" method="POST">
+                @method('PUT')
                 @include('admin.pages.plans.details._partials.form')
             </form>
         </div>
