@@ -1,6 +1,6 @@
 @if ($errors->any())
     @foreach ($errors->all() as $error)
-    <div class="alert alert-danger">
+    <div class="alert alert-warning">
         <p>{{ $error }}</p>
     </div>
     @endforeach
@@ -11,3 +11,10 @@
         <p>{{ session('message') }}</p>
     </div>
 @endif
+
+@if (session('error'))
+    <div class="alert alert-danger">
+        <p>{{ session('error') }}</p>
+    </div>
+@endif
+
