@@ -9,7 +9,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('plans.update', ['url' => $plan->url]) }}" class="form" method="POST">
+            <form action="{{ route('plans.update', [$plan->url]) }}" class="form" method="POST">
                 @method('PUT')
                 @include('admin.pages.plans._partials.form')
             </form>

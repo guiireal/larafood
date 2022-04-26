@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->namespace('Admin')->group(function () {
     /**
+     * Routes Profiles
+     */
+    Route::any('/profiles/search', 'ACL\ProfileController@search')->name('profiles.search');
+    Route::resource('profiles', 'ACL\ProfileController');
+
+    /**
      * Routes Plans
      */
     Route::prefix('plans')->name('plans.')->group(function () {

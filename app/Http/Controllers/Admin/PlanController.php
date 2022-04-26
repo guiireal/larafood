@@ -65,7 +65,7 @@ class PlanController extends Controller
 
     public function search(Request $request)
     {
-        $filters = $request->except('_token');
+        $filters = $request->only('filter');
 
         $plans = $this->repository->search($request->filter);
 
@@ -94,6 +94,5 @@ class PlanController extends Controller
         $plan->update($request->all());
 
         return redirect()->route('plans.index')->with('message', 'Registro atualizado com sucesso!');
-        ;
     }
 }

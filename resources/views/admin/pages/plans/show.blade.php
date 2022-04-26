@@ -24,7 +24,7 @@
                 </li>
             </ul>
             @include('admin.includes.alerts')
-            <form action="{{ route('plans.destroy', ['url' => $plan->url]) }}" method="POST">
+            <form action="{{ route('profiles.destroy', [$plan->url]) }}" method="POST">
                 @method('DELETE')
                 @csrf
                 <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Deletar o plano {{ $plan->name }}</button>
