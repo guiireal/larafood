@@ -10,6 +10,12 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     Route::resource('profiles', 'ACL\ProfileController');
 
     /**
+     * Routes Permissions
+     */
+    Route::any('/permissions/search', 'ACL\PermissionController@search')->name('permissions.search');
+    Route::resource('permissions', 'ACL\PermissionController');
+
+    /**
      * Routes Plans
      */
     Route::prefix('plans')->name('plans.')->group(function () {
