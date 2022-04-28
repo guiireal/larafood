@@ -30,16 +30,18 @@
                         <th width="250">Ações</th>
                     </tr>
                 </thead>
-                @foreach($plans as $plan)
-                <tr>
-                    <td>{{ $plan->name }}</td>
-                    <td>{{ $plan->price }}</td>
-                    <td style="width: 10px;">
-                        <a href="{{ route('plans.details.index', [$plan->url]) }}" class="btn btn-primary">Detalhes</a>
-                        <a href="{{ route('plans.edit', [$plan->url]) }}" class="btn btn-info">Editar</a>
-                        <a href="{{ route('plans.show', [$plan->url]) }}" class="btn btn-warning">Ver</a>
-                    </td>
-                </tr>
+                <tbody>
+                    @foreach($plans as $plan)
+                    <tr>
+                        <td>{{ $plan->name }}</td>
+                        <td>{{ $plan->price }}</td>
+                        <td style="width: 10px;">
+                            <a href="{{ route('plans.details.index', [$plan->url]) }}" class="btn btn-primary">Detalhes</a>
+                            <a href="{{ route('plans.edit', [$plan->url]) }}" class="btn btn-info">Editar</a>
+                            <a href="{{ route('plans.show', [$plan->url]) }}" class="btn btn-warning">Ver</a>
+                        </td>
+                    </tr>
+                </tbody>
                 @endforeach
             </table>
         </div>

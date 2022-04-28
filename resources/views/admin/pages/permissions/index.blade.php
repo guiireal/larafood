@@ -29,15 +29,18 @@
                         <th width="250">Ações</th>
                     </tr>
                 </thead>
-                @foreach($permissions as $permission)
-                <tr>
-                    <td>{{ $permission->name }}</td>
-                    <td style="width: 10px;">
-                        <a href="{{ route('permissions.edit', [$permission->id]) }}" class="btn btn-info">Editar</a>
-                        <a href="{{ route('permissions.show', [$permission->id]) }}" class="btn btn-warning">Ver</a>
-                    </td>
-                </tr>
-                @endforeach
+                <tbody>
+                    @foreach($permissions as $permission)
+                    <tr>
+                        <td>{{ $permission->name }}</td>
+                        <td style="width: 10px;">
+                            <a href="{{ route('permissions.edit', [$permission->id]) }}" class="btn btn-info">Editar</a>
+                            <a href="{{ route('permissions.show', [$permission->id]) }}" class="btn btn-warning">Ver</a>
+                            <a href="{{ route('permissions.profiles', [$permission->id]) }}" class="btn btn-primary"><i class="fas fa-address-book"></i></a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
             </table>
         </div>
         <div class="card-footer">

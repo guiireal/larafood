@@ -3,17 +3,31 @@
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->namespace('Admin')->group(function () {
-    /**
-     * Routes Profiles
-     */
-    Route::any('/profiles/search', 'ACL\ProfileController@search')->name('profiles.search');
-    Route::resource('profiles', 'ACL\ProfileController');
+    Route::namespace('ACL')->group(function () {
+        Route::prefix('profiles/{id}/permissions')->group(function () {
+            /**
+             * Permission x Profile
+             */
+            Route::post('/', 'PermissionProfileController@attachPermissionsProfile')->name('profiles.permissions.attach');
+            Route::any('/create', 'PermissionProfileController@permissionsAvailable')->name('profiles.permissions.available');
+            Route::get('/{permissionId}/detach', 'PermissionProfileController@detachPermissionsProfile')->name('profiles.permissions.detach');
+            Route::get('/', 'PermissionProfileController@permissions')->name('profiles.permissions');
+        });
 
-    /**
-     * Routes Permissions
-     */
-    Route::any('/permissions/search', 'ACL\PermissionController@search')->name('permissions.search');
-    Route::resource('permissions', 'ACL\PermissionController');
+        Route::get('/permissions/{id}/profile', 'PermissionProfileController@profiles')->name('permissions.profiles');
+
+        /**
+         * Routes Profiles
+         */
+        Route::any('/profiles/search', 'ProfileController@search')->name('profiles.search');
+        Route::resource('profiles', 'ProfileController');
+
+        /**
+         * Routes Permissions
+         */
+        Route::any('/permissions/search', 'PermissionController@search')->name('permissions.search');
+        Route::resource('permissions', 'PermissionController');
+    });
 
     /**
      * Routes Plans
